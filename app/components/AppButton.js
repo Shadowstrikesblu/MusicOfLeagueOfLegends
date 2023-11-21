@@ -26,15 +26,17 @@ export default AppButton;
 const styles = StyleSheet.create({
     button:{
         height: 50,
-        backgroundColor: color.red,
+        backgroundColor: color.loldarkblue,
         borderRadius: 10,
-        marginHorizontal: 20,
+        borderColor: color.lolyellow,
+        marginHorizontal: 10,
         marginVertical: 10,
+        width: '100%',
     },
     centerText:{
         textAlign : 'center',
         fontSize : 25,
-        color : color.black,
+        color : color.lolyellow,
         fontFamily: "League",
     },
 })

@@ -7,4 +7,7 @@ export default {
     beige : "#f8f4f4",
     yellow : "#FFFF00",
     lolyellow:"#C89B3C",
+    lolblue:"#0397AB",
+    loldarkblue:"#0A1428",
+    lolblack:"#010A13"
 }

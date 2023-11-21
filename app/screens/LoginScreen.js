@@ -1,66 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { Image, StyleSheet, ImageBackground, View,Text } from 'react-native';
-import AppButton from '../components/AppButton';
-import {useFonts } from 'expo-font';
-import * as Font from 'expo-font';
+import React, { useState } from 'react';
+import { Image, StyleSheet, ImageBackground, View, Text, SafeAreaView } from 'react-native';
+import { useFonts } from 'expo-font';
 import color from '../config/color';
+import LoginandRegisterHolder from '../components/LoginandRegisterHolder';
+import MyHeader from '../components/MyHeader';
+import MyFooter from '../components/MyFooter';
 
-function LoginScreen(props) {
-    const [fontLoaded, setFontLoaded] = useState(false);
+function LoginScreen() {
+    const [loaded] = useFonts({
+        League: require('../assets/fonts/BeaufortforLOL-Bold.ttf'),
+    });
 
-    useEffect(() => {
-        async function loadFonts() {
-            await Font.loadAsync({
-                'League': require('../assets/fonts/BeaufortforLOL-Bold.ttf'),
-            });
-            setFontLoaded(true);
-        }
-        loadFonts();
-    }, []);
+    if (!loaded) {
+        return null;
+    }
 
     return (
-        <>
-        <ImageBackground
-        source={require('../assets/heartsteel.jpg')}
-        style={styles.background}>
-            <View style={styles.logoContainer} >
-                <Image style={styles.logo} source={require('../assets/mainicon.jpg')} />
-                {fontLoaded && <Text style={styles.title}> The music of League of Legends </Text>}
+        <SafeAreaView>
+            <View style={styles.container}>
+                <ImageBackground
+                    source={require('../assets/heartsteel.jpg')}
+                    style={styles.background}
+                    // resizeMode='contain'
+                >
+                    <SafeAreaView style={styles.logoContainer}>
+                        <Image style={styles.logo} source={require('../assets/mainicon.jpg')} />
+                        <Text style={styles.title}>The music of League of Legends</Text>
+                    </SafeAreaView>
+                </ImageBackground>
+                <LoginandRegisterHolder />
             </View>
-        </ImageBackground>
-        <View >
-            <ImageBackground
-            source={require('../assets/summonersrift.jpg')}>
-                <AppButton>Login</AppButton>
-                <AppButton>Register</AppButton>
-            </ImageBackground>
-            
-        </View>
-        </>
+        </SafeAreaView>
     );
 }
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-    background:{
+    background: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        // height:'100%',
+        // width:'100%',
+        // position: 'absolute',
         flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center",
+
+    },
+    container:{
+        height: '100%',
+
     },
     logoContainer: {
-        position: "absolute",
         top: 70,
-        width : "100%",
-        alignItems:"center",
-      },
-      logo: {
+        width: '100%',
+        alignItems: 'center',
+        position: 'absolute',
+    },
+    logo: {
         height: 150,
         width: 150,
-      },
-      title:{
-        fontFamily: "League",
-        color:color.white,
+    },
+    title: {
+        fontFamily: 'League',
+        color: color.white,
         backgroundColor: color.black,
-      }
-})
+    },
+});
