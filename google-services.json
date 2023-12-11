@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "26591479522",
+    "project_id": "leagueoflegendsmusic-86b56",
+    "storage_bucket": "leagueoflegendsmusic-86b56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26591479522:android:8796fc17373ec36770c0bb",
+        "android_client_info": {
+          "package_name": "com.LeagueOfLegendsMusic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_U9Pw29IU04ith4I69ssMmkka-DNp8eY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
