@@ -12,18 +12,23 @@
       "backgroundColor": "#ffffff"
     },
     "android": {
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "package": "com.shadowstrikesblu.MusicOfLeague"
     },
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist"
     },
-    "plugins": [
-    ],
+    "plugins": [],
     "assetBundlePatterns": [
       "**/*"
     ],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2bc35617-78a0-411c-b7f0-101a4ce56ecd"
+      }
     }
   }
 }

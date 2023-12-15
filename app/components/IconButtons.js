@@ -3,6 +3,8 @@ import { TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import color from '../config/color';
 import { StyleSheet } from 'react-native';
+
+
 const MyButton = ({ onPress, title,name }) => {
   return (
     <SafeAreaView>

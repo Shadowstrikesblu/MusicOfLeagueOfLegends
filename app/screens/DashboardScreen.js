@@ -34,6 +34,27 @@ function Dashboard(props) {
                         image={'https://d2wpdrdr9q2sj9.cloudfront.net/Burnitalldown.mp4'}
                     />
                     </SafeAreaView>
+                    <SafeAreaView>
+                    <Card
+                        title={"Star Walkin'"}
+                        subtitle={"Don't ever say it's over when i'm breating"}
+                        image={'https://projectparanoia.s3.eu-north-1.amazonaws.com/Starwalking.mp4'}
+                    />
+                    </SafeAreaView>
+                    <SafeAreaView>
+                    <Card
+                        title={'Take Over'}
+                        subtitle={"WE'RE TAKING OVER!!!"}
+                        image={'https://projectparanoia.s3.eu-north-1.amazonaws.com/Takeover.mp4'}
+                    />
+                    </SafeAreaView>
+                    <SafeAreaView>
+                    <Card
+                        title={'Enemy'}
+                        subtitle={"Oooooh the misery "}
+                        image={'https://projectparanoia.s3.eu-north-1.amazonaws.com/Enemy.mp4'}
+                    />
+                    </SafeAreaView>
                 </View>
             </ScrollView>
         </ImageBackground>

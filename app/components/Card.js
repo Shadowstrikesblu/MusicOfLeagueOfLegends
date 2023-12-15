@@ -1,9 +1,11 @@
-import React from 'react';
-import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import color from '../config/color';
 import { Video } from 'expo-av';
-
+import { Ionicons } from '@expo/vector-icons'; 
 import { useFonts } from 'expo-font';
+import Heart from './buttons/Heart';
+import Comment from './comment/Comment';
 
 function Card({ title, subtitle, image }) {
     const video = React.useRef(null);
@@ -16,6 +18,7 @@ function Card({ title, subtitle, image }) {
         return null;
     }
 
+    
     return (
         <TouchableOpacity style={styles.card}>
             <View style={styles.container}>
@@ -27,10 +30,24 @@ function Card({ title, subtitle, image }) {
                             uri: image,
                         }}
                         resizeMode="contain"
-                        isLooping
+                        isLooping = {false}
                         onPlaybackStatusUpdate={(status) => setStatus(() => status)}
                     />
                     <View style={styles.buttons}>
+                        <TouchableOpacity
+                            style={styles.iconButton}
+                            onPress={() =>
+                                status.isMuted ? video.current.setIsMutedAsync(false) : video.current.setIsMutedAsync(true)
+                            }
+                        >
+                            <Ionicons name={status.isMuted ? 'volume-mute' : 'volume-high'} size={24} color="white" />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.iconButton}
+                            onPress={() => video.current.setPositionAsync(status.positionMillis - 5000)} // Seek backward by 5 seconds
+                        >
+                            <Ionicons name="play-back" size={24} color="white" />
+                        </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.playButton}
                             onPress={() =>
@@ -39,10 +56,27 @@ function Card({ title, subtitle, image }) {
                         >
                             <Text style={styles.playButtonText}>{status.isPlaying ? 'Pause' : 'Play'}</Text>
                         </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={styles.iconButton}
+                            onPress={() => video.current.setPositionAsync(status.positionMillis + 5000)} // Seek forward by 5 seconds
+                        >
+                            <Ionicons name="play-forward" size={24} color="white" />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.iconButton}
+                            onPress={() => video.current.presentFullscreenPlayer()}
+                        >
+                            <Ionicons name="expand" size={24} color="white" />
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.subtitle}>{subtitle}</Text>
+                    <Heart/>
+                    <ScrollView>
+                        <Text style={styles.subtitle}>{subtitle}</Text>
+                    </ScrollView>
+                    <Comment/>
             </View>
         </TouchableOpacity>
     );
@@ -52,7 +86,7 @@ export default Card;
 
 const styles = StyleSheet.create({
     card: {
-        height: 300,
+        height: 325,
         backgroundColor: color.white,
         borderRadius: 20,
         marginHorizontal: 20,
@@ -66,10 +100,23 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
+    iconButton: {
+        margin: 10,
+    },
+    playButton: {
+        margin: 10,
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 5,
+    },
+    playButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
     title: {
         textAlign: 'left',
         marginLeft: 20,
-        marginTop: 10,
+        // marginTop: 10,
         fontFamily: 'League',
         fontSize: 24,
         color: color.primary,
@@ -77,8 +124,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+
     subtitle: {
-        marginTop: 10,
+        // marginTop: 10,
         color: color.secondary,
         marginLeft: 20,
         fontSize: 16,
@@ -97,8 +145,9 @@ const styles = StyleSheet.create({
     buttons: {
         position: 'absolute',
         bottom: 0,
-        right: 0,
-        left: 0,
+        width: '100%',
+        right: '0%',
+        // left: '20%',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

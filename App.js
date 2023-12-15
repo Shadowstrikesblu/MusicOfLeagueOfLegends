@@ -35,14 +35,14 @@ export default function App (){
                         <Stack.Screen
                               name="LoginForm"
                               component={LoginForm}
-                              options={{ headerShown: true,
+                              options={{ headerShown: false,
                                     header: () => <MyHeader />,
                               }}
                         />
                         <Stack.Screen
                               name="RegisterForm"
                               component={RegisterForm}
-                              options={{ headerShown: true,
+                              options={{ headerShown: false,
                                     header: () => <MyHeader />,
                               footerShown: true }}
                         />
